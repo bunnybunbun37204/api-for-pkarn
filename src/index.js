@@ -15,7 +15,7 @@ const server = new ApolloServer({
       if (err) {
         console.error(err)
       } else {
-        console.log("Successfully Connected to MongoDB!")
+        console.log("🐣 Successfully Connected to MongoDB!")
       }
     });
 
