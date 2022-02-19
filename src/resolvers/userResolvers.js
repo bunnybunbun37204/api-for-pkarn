@@ -42,6 +42,29 @@ const userResolvers = {
                 throw new AuthenticationError("Wrong Password!")
             }
         },
+        addContainer: async (parent, args, context, info) => {
+            const newContainer = {
+                container_id: args.container_id,
+                container_size: args.container_size,
+                container_type: args.container_type,
+                container_damage_level: args.container_damage_level,
+                container_date_start: args.container_date_start,
+                container_date_end: args.container_date_end,
+                container_fixed_status: args.container_fixed_status
+            }
+            //Check conditions
+            const container = await db.getCollection('container').findOne({ container_id: args.container_id });
+            if (container) {
+                throw new AuthenticationError('Container id is already exists');
+            }
+            try {
+                const regContainer = (await db.getCollection('container').insertOne(newContainer)).ops[0]
+                return { ...regContainer };
+            }
+            catch (e) {
+                throw e;
+            }
+        },
     }
 };
 

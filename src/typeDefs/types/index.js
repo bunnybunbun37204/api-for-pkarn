@@ -6,6 +6,16 @@ const userType = gql`
     password: String!
     token: String
   }
+
+  type Container {
+    container_id : String!
+    container_size : Float!
+    container_type : String!
+    container_damage_level : String!
+    container_date_start : String!
+    container_date_end : String!
+    container_fixed_status : Boolean!
+  }
 `
 
 module.exports = {
