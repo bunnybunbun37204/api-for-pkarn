@@ -3,6 +3,7 @@ const { gql } = require("apollo-server");
 const query = gql`
   type Query {
     me: User
+    container(container_id : String!): Container
   }
   type Mutation {
     register(username: String!, password: String!): User

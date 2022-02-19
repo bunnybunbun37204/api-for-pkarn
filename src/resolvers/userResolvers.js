@@ -14,6 +14,15 @@ const userResolvers = {
             } else {
                 throw new AuthenticationError("Please Login Again!")
             }
+        },
+        container: async (parent, args, context, info) => {
+            // console.log(context.user)
+            if (context.loggedIn && args) {
+                const container = await db.getCollection('container').findOne({ container_id: args.container_id });
+                return container;
+            } else {
+                throw new AuthenticationError("Please Login Again!")
+            }
         }
     },
     Mutation: {
@@ -52,6 +61,10 @@ const userResolvers = {
                 container_date_end: args.container_date_end,
                 container_fixed_status: args.container_fixed_status
             }
+
+            //Check authentikate
+            if(!context.loggedIn) throw new AuthenticationError("Please Login Again!");
+
             //Check conditions
             const container = await db.getCollection('container').findOne({ container_id: args.container_id });
             if (container) {
