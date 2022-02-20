@@ -14,6 +14,7 @@ const userType = gql`
     container_damage_level : String!
     container_date_start : String!
     container_date_end : String!
+    container_date_finish : String!
     container_fixed_status : Boolean!
   }
 `

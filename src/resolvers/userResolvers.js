@@ -59,11 +59,12 @@ const userResolvers = {
                 container_damage_level: args.container_damage_level,
                 container_date_start: args.container_date_start,
                 container_date_end: args.container_date_end,
+                container_date_finish: args.container_date_finish,
                 container_fixed_status: args.container_fixed_status
             }
 
             //Check authentikate
-            if(!context.loggedIn) throw new AuthenticationError("Please Login Again!");
+            if (!context.loggedIn) throw new AuthenticationError("Please Login Again!");
 
             //Check conditions
             const container = await db.getCollection('container').findOne({ container_id: args.container_id });
@@ -78,6 +79,31 @@ const userResolvers = {
                 throw e;
             }
         },
+        updateContainerStatus: async (parent, args, context, info) => {
+            //Check authentikate
+            if (!context.loggedIn) throw new AuthenticationError("Please Login Again!");
+
+            const conainer = await db.getCollection('container').findOne({ container_id: args.container_id });
+            if (!conainer) throw new AuthenticationError('Container id does not exist');
+
+            const updatedContainer = {
+                container_date_finish: args.container_date_finish,
+                container_fixed_status: args.container_fixed_status
+            }
+
+            try {
+                const updatedContainerState = (await db.getCollection('container').findOneAndUpdate({ container_id: args.container_id },
+                    { "$set": updatedContainer },
+                    (err, res) => {
+                        if (err) throw err;
+                        return { ...updatedContainerState };
+                    }));
+            }
+
+            catch (err) {
+                throw err;
+            }
+        }
     }
 };
 
