@@ -92,12 +92,13 @@ const userResolvers = {
             }
 
             try {
-                const updatedContainerState = (await db.getCollection('container').findOneAndUpdate({ container_id: args.container_id },
+                await db.getCollection('container').findOneAndUpdate(
+                    { container_id: args.container_id },
                     { "$set": updatedContainer },
                     (err, res) => {
                         if (err) throw err;
-                        return { ...updatedContainerState };
-                    }));
+                    });
+                return { ...args };
             }
 
             catch (err) {
