@@ -18,9 +18,11 @@ const query = gql`
       container_date_finish : String!
       container_fixed_status : Boolean!
     ): Container
-    updateContainerStatus(container_id : String!, 
-                          container_date_finish : String!, 
-                          container_fixed_status : Boolean!): Container
+    updateContainerStatus(
+      container_id : String!, 
+      container_date_finish : String!, 
+      container_fixed_status : Boolean!
+      ): Container
   }
 `;
 
