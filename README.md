@@ -14,7 +14,11 @@ npm install
 DB_URI=<your mongodb uri>
 SECRET=<your secret key>
 ```
+2. You can start by using npm start and the program will be available at localhost:4000 but you can change it.
 
+```bash
+npm start
+```
 ## License
 
 This project is under MIT license.
