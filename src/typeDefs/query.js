@@ -4,6 +4,7 @@ const query = gql`
   type Query {
     me: User
     container(container_id : String!): Container
+    all_container : AllId
   }
   type Mutation {
     register(username: String!, password: String!): User

@@ -17,6 +17,10 @@ const userType = gql`
     container_date_finish : String!
     container_fixed_status : Boolean!
   }
+
+  type AllId {
+    all_id : [String!]!
+  }
 `
 
 module.exports = {

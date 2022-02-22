@@ -23,6 +23,18 @@ const userResolvers = {
             } else {
                 throw new AuthenticationError("Please Login Again!")
             }
+        },
+        all_container : async (parent, args, context, info) => {
+            let data = []
+            if (context.loggedIn) {
+                const all_query = await db.getCollection('container').find().forEach(d => {
+                    data.push(d.container_id)
+                })
+                return {"all_id":data}
+            }
+            else {
+                throw new AuthenticationError("Please Login Again!")
+            }
         }
     },
     Mutation: {
