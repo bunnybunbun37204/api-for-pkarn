@@ -19,7 +19,7 @@ const userType = gql`
   }
 
   type AllId {
-    all_id : [String!]!
+    all_id : [Container!]!
   }
 `
 

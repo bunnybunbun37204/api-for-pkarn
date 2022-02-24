@@ -28,7 +28,8 @@ const userResolvers = {
             let data = []
             if (context.loggedIn) {
                 const all_query = await db.getCollection('container').find().forEach(d => {
-                    data.push(d.container_id)
+                    delete d['_id']
+                    data.push(d)
                 })
                 return {"all_id":data}
             }
